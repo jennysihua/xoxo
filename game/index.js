@@ -1,11 +1,9 @@
 import {Map} from 'immutable'
-import {createStore} from 'redux'
 
 // let board = Map()
 
+const board = Map()
 const MOVE = 'move'
-
-// let board = Map()
 // board = board.setIn([1, 1], 'X')
 // console.log(board)
 
@@ -15,16 +13,17 @@ export const move = (turn, rowCol) => ({
   turn
 })
 
-export default function reducer (state = { board: Map(), turn: 'X' }, action) {
-  if (action.type === MOVE) {
-    let newTurn;
-    const newBoard = state.board.setIn(action.position, state.turn)
-    if (state.turn === 'X') {
-      newTurn = 'Y'
-    } else {
-      newTurn = 'X'
+export default function reducer (state = { board, turn: 'X' }, action) {
+  switch (action.type) {
+      case MOVE: {
+      let newTurn;
+      if (state.turn === 'X') {
+        newTurn = 'O'
+      } else {
+        newTurn = 'X'
+      }
+      return { board: state.board.setIn(action.position, state.turn),  turn: newTurn}
     }
-    return { board: newBoard,  turn: newTurn}
+    default: return state
   }
-  return state
 }
