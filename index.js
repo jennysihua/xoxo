@@ -2,16 +2,23 @@ import inquirer from 'inquirer'
 
 import gameReducer, {move} from './game'
 import {createStore} from 'redux'
+import {winner} from './game/winner'
 
 const printBoard = () => {
   const {board} = game.getState()
-  for (let r = 0; r != 3; ++r) {
-    for (let c = 0; c != 3; ++c) {
-      process.stdout.write(board.getIn([r, c], '_'))
+  console.log(board)
+  const checkWinner = winner(board)
+  console.log(checkWinner)
+
+    for (let r = 0; r != 3; ++r) {
+      for (let c = 0; c != 3; ++c) {
+        process.stdout.write(board.getIn([r, c], '_'))
+      }
+      process.stdout.write('\n')
     }
-    process.stdout.write('\n')
-  }
+
 }
+
 
 const getInput = player => async () => {
   const {turn} = game.getState()

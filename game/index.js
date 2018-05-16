@@ -27,3 +27,7 @@ export default function reducer (state = { board, turn: 'X' }, action) {
     default: return state
   }
 }
+
+// const checkWinners = //
+
+//[[0, 0],[0,1],[0,2], [more groups of three]]
