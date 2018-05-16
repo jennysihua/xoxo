@@ -18,14 +18,13 @@ export const winner = (board) => {
     }
     if (output[i].includes(undefined)) {
       output[i] = undefined
+    } else {
+      output[i] = output[i].join('')
     }
   }
-  console.log(output)
-  console.log('c1', output.includes([ 'X', 'X', 'X' ]))
-  console.log('c2', output.indexOf([ 'X', 'X', 'X' ]) > -1)
-  if (output.includes(['X', 'X', 'X'])) {
+  if (output.includes('XXX')) {
     return 'X is the winner'
-  } else if (output.includes(['Y', 'Y', 'Y'])) {
+  } else if (output.includes('YYY')) {
     return 'Y is the winner'
   } else if (!output.includes(undefined)) {
     return 'Tie'
