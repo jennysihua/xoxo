@@ -9,14 +9,16 @@ const printBoard = () => {
   console.log(board)
   const checkWinner = winner(board)
   console.log(checkWinner)
-
-    for (let r = 0; r != 3; ++r) {
-      for (let c = 0; c != 3; ++c) {
-        process.stdout.write(board.getIn([r, c], '_'))
+    if (!checkWinner) {
+      for (let r = 0; r != 3; ++r) {
+        for (let c = 0; c != 3; ++c) {
+          process.stdout.write(board.getIn([r, c], '_'))
+        }
+        process.stdout.write('\n')
       }
-      process.stdout.write('\n')
+    } else {
+      process.stdout.write(checkWinner)
     }
-
 }
 
 
